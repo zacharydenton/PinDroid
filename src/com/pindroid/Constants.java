@@ -64,6 +64,7 @@ public class Constants {
     public static final String PREFS_SECRET_TOKEN = "secret_token";
     
     public static final String TEXT_EXTRACTOR_URL = "http://viewtext.org/api/text?url=";
+    public static final String ARTICLE_READ_URL = "http://instapaper.com/text?u=";
     
     public static final String GPL_URL = "http://www.gnu.org/licenses/gpl-3.0.txt";
     public static final String MANUAL_URL = "http://code.google.com/p/pindroid/wiki/Manual";

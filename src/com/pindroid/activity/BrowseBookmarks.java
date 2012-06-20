@@ -21,6 +21,9 @@
 
 package com.pindroid.activity;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import android.app.SearchManager;
 import android.content.Intent;
 import android.net.Uri;
@@ -214,14 +217,17 @@ public class BrowseBookmarks extends FragmentBaseActivity implements OnBookmarkS
 	}
 
 	public void onBookmarkRead(Bookmark b) {
-		if(b != null){
-			if(findViewById(R.id.maincontent) != null) {
-				lastSelected = b;
-				lastViewType = BookmarkViewType.READ;
-				setBookmarkView(b, BookmarkViewType.READ);
-			} else {
-				startActivity(IntentHelper.ViewBookmark(b, BookmarkViewType.READ, username, this));
-			}
+		String url = b.getUrl();
+    	
+    	if(!url.startsWith("http")) {
+    		url = "http://" + url;
+    	}
+		
+		try {
+			startActivity(IntentHelper.OpenInBrowser(Constants.ARTICLE_READ_URL + URLEncoder.encode(url, "UTF-8")));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
